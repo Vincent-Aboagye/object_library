@@ -1,0 +1,107 @@
+[
+    {
+        "arguments": [
+            "c++",
+            "-c",
+            "-fsanitize=address",
+            "-fsanitize=undefined",
+            "-Wall",
+            "-Wextra",
+            "-O2",
+            "-g",
+            "-Iinclude",
+            "-fprofile-arcs",
+            "-ftest-coverage",
+            "-fPIC",
+            "-o",
+            "src/square.o",
+            "src/square.cpp"
+        ],
+        "directory": "/home/vagrant/FAQAS/MASS/examples/object_library_example/mass-object-library",
+        "file": "src/square.cpp"
+    },
+    {
+        "arguments": [
+            "c++",
+            "-c",
+            "-fsanitize=address",
+            "-fsanitize=undefined",
+            "-Wall",
+            "-Wextra",
+            "-O2",
+            "-g",
+            "-Iinclude",
+            "-fprofile-arcs",
+            "-ftest-coverage",
+            "-fPIC",
+            "-o",
+            "src/error.o",
+            "src/error.cpp"
+        ],
+        "directory": "/home/vagrant/FAQAS/MASS/examples/object_library_example/mass-object-library",
+        "file": "src/error.cpp"
+    },
+    {
+        "arguments": [
+            "c++",
+            "-c",
+            "-fsanitize=address",
+            "-fsanitize=undefined",
+            "-Wall",
+            "-Wextra",
+            "-O2",
+            "-g",
+            "-Iinclude",
+            "-fprofile-arcs",
+            "-ftest-coverage",
+            "-fPIC",
+            "-o",
+            "src/circle.o",
+            "src/circle.cpp"
+        ],
+        "directory": "/home/vagrant/FAQAS/MASS/examples/object_library_example/mass-object-library",
+        "file": "src/circle.cpp"
+    },
+    {
+        "arguments": [
+            "c++",
+            "-c",
+            "-fsanitize=address",
+            "-fsanitize=undefined",
+            "-Wall",
+            "-Wextra",
+            "-O2",
+            "-g",
+            "-Iinclude",
+            "-fprofile-arcs",
+            "-ftest-coverage",
+            "-fPIC",
+            "-o",
+            "src/triangle.o",
+            "src/triangle.cpp"
+        ],
+        "directory": "/home/vagrant/FAQAS/MASS/examples/object_library_example/mass-object-library",
+        "file": "src/triangle.cpp"
+    },
+    {
+        "arguments": [
+            "c++",
+            "-c",
+            "-fsanitize=address",
+            "-fsanitize=undefined",
+            "-Wall",
+            "-Wextra",
+            "-O2",
+            "-g",
+            "-Iinclude",
+            "-fprofile-arcs",
+            "-ftest-coverage",
+            "-fPIC",
+            "-o",
+            "src/rectangle.o",
+            "src/rectangle.cpp"
+        ],
+        "directory": "/home/vagrant/FAQAS/MASS/examples/object_library_example/mass-object-library",
+        "file": "src/rectangle.cpp"
+    }
+]
