@@ -3,8 +3,8 @@
 # Created by Enrico VIGANO, enrico.vigano@uni.lu, SnT, 2023.
 # ********************************************************************
 
-CC = g++ # C compiler
-CXXFLAGS = -fsanitize=address -fsanitize=undefined -Wall -Wextra -O0 -g -Iinclude -fprofile-arcs -ftest-coverage -fPIC # C++ flags
+CC = clang++ # C compiler (use clang++ for LLVM coverage support)
+CXXFLAGS = -fsanitize=address -fsanitize=undefined -Wall -Wextra -O0 -g -Iinclude -fprofile-instr-generate -fcoverage-mapping -fPIC # C++ flags
 LDFLAGS = -fsanitize=address -fsanitize=undefined -lgcov # linking flags
 RM = rm -f # rm command
 TARGET_LIB = ./bin/libmassobjects.a # target lib
@@ -27,10 +27,10 @@ $(TARGET_LIB): $(OBJS)
 	$(AR) rcs $@ $^
 
 $(SRCS:.cpp=.d):%.d:%.cpp
-	$(CXX) $(CXXFLAGS) -MM $< >$@
+	$(CC) $(CXXFLAGS) -MM $< >$@
 
 include $(SRCS:.cpp=.d)
 
 .PHONY: clean
 clean:
-	-${RM} ${TARGET_LIB} ${OBJS} $(SRCS:.cpp=.d) $(SRCS:.cpp=.gcno) $(SRCS:.cpp=.gcda) $(SRCS:.cpp=.gcov)
+	-${RM} ${TARGET_LIB} ${OBJS} $(SRCS:.cpp=.d) $(SRCS:.cpp=.profraw) $(SRCS:.cpp=.gcov)
