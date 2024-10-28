@@ -24,7 +24,7 @@ all: ${TARGET_LIB_SHARED} ${TARGET_LIB_STATIC}
 
 # Build shared library
 $(TARGET_LIB_SHARED): $(OBJS)
-	$(CC) $(LDFLAGS_SHARED) -o $@ $^
+	$(CC) $(OBJS) $(LDFLAGS_SHARED) -o $@
 
 # Build static library
 $(TARGET_LIB_STATIC): $(OBJS)
@@ -39,4 +39,5 @@ include $(SRCS:.cpp=.d)
 .PHONY: clean
 clean:
 	-${RM} ${TARGET_LIB_SHARED} ${TARGET_LIB_STATIC} ${OBJS} $(SRCS:.cpp=.d)
+
 
