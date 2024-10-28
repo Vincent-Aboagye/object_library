@@ -3,13 +3,13 @@
 # Created by Enrico VIGANO, enrico.vigano@uni.lu, SnT, 2023.
 # ********************************************************************
 
-CC = clang++ # C compiler (use clang++ for LLVM coverage support)
-CXXFLAGS = -fsanitize=address -fsanitize=undefined -Wall -Wextra -O0 -g -Iinclude -fprofile-instr-generate -fcoverage-mapping -fPIC # C++ flags
-LDFLAGS = -fsanitize=address -fsanitize=undefined -lgcov # linking flags
+CC = g++ # C++ compiler
+CXXFLAGS = -fsanitize=address -fsanitize=undefined -Wall -Wextra -O0 -g -Iinclude -fPIC -fprofile-arcs -ftest-coverage # C++ flags with coverage and PIC for shared library
+LDFLAGS_SHARED = -shared -fsanitize=address -fsanitize=undefined -lgcov # linking flags for shared library
+LDFLAGS_STATIC = -fsanitize=address -fsanitize=undefined -lgcov # linking flags for static library
 RM = rm -f # rm command
-TARGET_LIB = ./bin/libmassobjects.a # target lib
-AR = ar
-MKDIR = mkdir -p
+TARGET_LIB_SHARED = ./libmassobjects.so # target shared library (in parent directory)
+TARGET_LIB_STATIC = ./libmassobjects.a # target static library (in parent directory)
 
 SRCS = src/circle.cpp \
     src/rectangle.cpp \
@@ -20,17 +20,22 @@ SRCS = src/circle.cpp \
 OBJS = $(SRCS:.cpp=.o)
 
 .PHONY: all
-all: ${TARGET_LIB}
+all: ${TARGET_LIB_SHARED} ${TARGET_LIB_STATIC}
 
-$(TARGET_LIB): $(OBJS)
-	$(MKDIR) bin
-	$(AR) rcs $@ $^
+# Build shared library
+$(TARGET_LIB_SHARED): $(OBJS)
+	$(CC) $(LDFLAGS_SHARED) -o $@ $^
 
-$(SRCS:.cpp=.d):%.d:%.cpp
-	$(CC) $(CXXFLAGS) -MM $< >$@
+# Build static library
+$(TARGET_LIB_STATIC): $(OBJS)
+	ar rcs $@ $^
+
+# Dependency generation
+$(SRCS:.cpp=.d): %.d: %.cpp
+	$(CC) $(CXXFLAGS) -MM $< > $@
 
 include $(SRCS:.cpp=.d)
 
 .PHONY: clean
 clean:
-	-${RM} ${TARGET_LIB} ${OBJS} $(SRCS:.cpp=.d) $(SRCS:.cpp=.profraw) $(SRCS:.cpp=.gcov)
+	-${RM} ${TARGET_LIB_SHARED} ${TARGET_LIB_STATIC} ${OBJS} $(SRCS:.cpp=.d) $(SRCS:.cpp=.gcno) $(SRCS:.cpp=.gcda) $(SRCS:.cpp=.gcov)
