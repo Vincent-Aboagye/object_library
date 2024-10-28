@@ -1,8 +1,8 @@
-#include "circle.hpp"
-#include "square.hpp"
-#include "rectangle.hpp"
-#include "triangle.hpp"
-#include "error.hpp"
+#include "include/circle.hpp"
+#include "include/square.hpp"
+#include "include/rectangle.hpp"
+#include "include/triangle.hpp"
+#include "include/error.hpp"
 #include <cstdint>
 #include <cstring>
 #include <iostream>
