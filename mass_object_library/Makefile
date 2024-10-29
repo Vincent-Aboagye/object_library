@@ -4,9 +4,9 @@
 # ********************************************************************
 #without coverage
 CC = clang++ # C++ compiler
-CXXFLAGS = -g -fsanitize=fuzzer-no-link -fno-sanitize=undefined -fprofile-instr-generate -fcoverage-mapping -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument # C++ flags with sanitizers and PIC for shared library
-LDFLAGS_SHARED = -shared -fsanitize=fuzzer-no-link -fsanitize=undefined # linking flags for shared library
-LDFLAGS_STATIC = -fsanitize=fuzzer-no-link -fsanitize=undefined # linking flags for static library
+CXXFLAGS = -fsanitize=address -fsanitize=undefined -Wall -Wextra -O0 -g -Iinclude -fPIC # C++ flags with sanitizers and PIC for shared library
+LDFLAGS_SHARED = -shared -fsanitize=address -fsanitize=undefined # linking flags for shared library
+LDFLAGS_STATIC = -fsanitize=address -fsanitize=undefined # linking flags for static library
 RM = rm -f # rm command
 TARGET_LIB_SHARED = ./libmassobjects.so # target shared library (in parent directory)
 TARGET_LIB_STATIC = ./libmassobjects.a # target static library (in parent directory)
