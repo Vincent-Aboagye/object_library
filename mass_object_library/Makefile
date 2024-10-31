@@ -32,7 +32,7 @@ $(TARGET_LIB_SHARED): $(OBJS)
 
 # Build static library
 $(TARGET_LIB_STATIC): $(OBJS)
-	ar rcs $@ $^
+	ar rcs $@ $^ *.bc
 
 # Dependency generation
 $(SRCS:.cpp=.d): %.d: %.cpp
