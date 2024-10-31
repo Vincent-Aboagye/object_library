@@ -17,7 +17,7 @@ SRCS = src/circle.cpp \
     src/triangle.cpp \
     src/error.cpp
 
-OBJS = $(SRCS:.cpp=.o)
+OBJS = $(SRCS:.cpp=.bc)
 
 # Compile object files  
 %.bc: %.cpp  
