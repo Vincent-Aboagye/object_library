@@ -20,7 +20,7 @@ SRCS = src/circle.cpp \
 OBJS = $(SRCS:.cpp=.o)
 
 # Compile object files  
-%.o: %.cpp  
+%.bc: %.cpp  
 	$(CC) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: all
