@@ -28,7 +28,9 @@ all: ${TARGET_LIB_SHARED} ${TARGET_LIB_STATIC}
 
 # Build shared library
 $(TARGET_LIB_SHARED): $(OBJS)
-	$(CC) $(LDFLAGS_SHARED) -o $@ $^
+	llvm-link $^ -o temp.bc  
+	$(CC) $(LDFLAGS_SHARED) temp.bc -o $@  
+	$(RM) temp.bc
 
 # Build static library
 $(TARGET_LIB_STATIC): $(OBJS)
