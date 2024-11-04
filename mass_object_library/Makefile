@@ -21,7 +21,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 # Compile object files  
 %.o: %.cpp  
-	$(CC) $(CXXFLAGS) -c $< -o $@
+	$(CC) $(CXXFLAGS) -emit-llvm -c $< -o $@
 
 .PHONY: all
 all: ${TARGET_LIB_SHARED} ${TARGET_LIB_STATIC}
