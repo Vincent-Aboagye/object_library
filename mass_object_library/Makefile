@@ -17,10 +17,10 @@ SRCS = src/circle.cpp \
     src/triangle.cpp \
     src/error.cpp
 
-OBJS = $(SRCS:.cpp=.bc)
+OBJS = $(SRCS:.cpp=.o)
 
 # Compile object files  
-%.bc: %.cpp  
+%.o: %.cpp  
 	$(CC) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: all
