@@ -4,7 +4,7 @@
 # ********************************************************************
 #without coverage
 CC = clang++ # C++ compiler
-CXXFLAGS = -fsanitize=address -fsanitize=undefined -Wall -Wextra -O2 -g -Iinclude -emit-llvm -fPIC # C++ flags with sanitizers and PIC for shared library
+CXXFLAGS = -fsanitize=address -fsanitize=undefined -Wall -Wextra -O2 -g -Iinclude -fPIC # C++ flags with sanitizers and PIC for shared library
 LDFLAGS_SHARED = -shared -fsanitize=address -fsanitize=undefined # linking flags for shared library
 LDFLAGS_STATIC = -fsanitize=address -fsanitize=undefined # linking flags for static library
 RM = rm -f # rm command
@@ -17,10 +17,10 @@ SRCS = src/circle.cpp \
     src/triangle.cpp \
     src/error.cpp
 
-OBJS = $(SRCS:.cpp=.bc)
+OBJS = $(SRCS:.cpp=.o)
 
 # Compile object files  
-%.bc: %.cpp  
+%.o: %.cpp  
 	$(CC) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: all
@@ -28,9 +28,7 @@ all: ${TARGET_LIB_SHARED} ${TARGET_LIB_STATIC}
 
 # Build shared library
 $(TARGET_LIB_SHARED): $(OBJS)
-	llvm-link $^ -o temp.bc  
-	$(CC) $(LDFLAGS_SHARED) temp.bc -o $@  
-	$(RM) temp.bc
+	$(CC) $(LDFLAGS_SHARED) -o $@ $^
 
 # Build static library
 $(TARGET_LIB_STATIC): $(OBJS)
