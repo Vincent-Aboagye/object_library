@@ -1,11 +1,14 @@
+#include <cstdint>
+#include <cstring>
+#include <iostream>
+
+extern "C++"{
 #include "../include/circle.hpp"
 #include "../include/square.hpp"
 #include "../include/rectangle.hpp"
 #include "../include/triangle.hpp"
 #include "../include/error.hpp"
-#include <cstdint>
-#include <cstring>
-#include <iostream>
+}
 
 void fuzz_circle(const uint8_t *data, size_t size) {
     if (size < sizeof(double)) return;
