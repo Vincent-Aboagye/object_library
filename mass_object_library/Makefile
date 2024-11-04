@@ -27,7 +27,7 @@ BC_OBJS = $(SRCS:.cpp=.bc)
 	$(CC) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: all
-all: ${TARGET_LIB_SHARED} ${TARGET_LIB_STATIC}
+all: ${TARGET_LIB_SHARED} ${TARGET_LIB_STATIC} ${TARGET_LIB_BC}
 
 # Build shared library
 $(TARGET_LIB_SHARED): $(OBJS)
