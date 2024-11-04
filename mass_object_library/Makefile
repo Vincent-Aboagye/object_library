@@ -4,7 +4,7 @@
 # ********************************************************************
 #without coverage
 CC = clang++ # C++ compiler
-CXXFLAGS = -fsanitize=address -fsanitize=undefined -Wall -Wextra -O2 -g -Iinclude -fPIC # C++ flags with sanitizers and PIC for shared library
+CXXFLAGS = -fsanitize=address -fsanitize=undefined -Wall -Wextra -O2 -g -Iinclude -fPIC  # C++ flags with sanitizers and PIC for shared library
 LDFLAGS_SHARED = -shared -fsanitize=address -fsanitize=undefined # linking flags for shared library
 LDFLAGS_STATIC = -fsanitize=address -fsanitize=undefined # linking flags for static library
 RM = rm -f # rm command
@@ -25,6 +25,9 @@ BC_OBJS = $(SRCS:.cpp=.bc)
 # Compile object files  
 %.o: %.cpp  
 	$(CC) $(CXXFLAGS) -c $< -o $@
+
+%.bc: %.cpp
+	$(CC) $(CXXFLAGS) -emit-llvm -c $< -o $@
 
 .PHONY: all
 all: ${TARGET_LIB_SHARED} ${TARGET_LIB_STATIC} ${TARGET_LIB_BC}
