@@ -4,9 +4,9 @@
 # ********************************************************************
 #without coverage
 CC = g++ # C++ compiler
-CXXFLAGS = -fsanitize=address -fsanitize=undefined -Wall -Wextra -O2 -g -Iinclude -fPIC  # C++ flags with sanitizers and PIC for shared library
-LDFLAGS_SHARED = -shared -fsanitize=address -fsanitize=undefined # linking flags for shared library
-LDFLAGS_STATIC = -fsanitize=address -fsanitize=undefined # linking flags for static library
+CXXFLAGS = -Wall -Wextra -O2 -g -Iinclude -fPIC  # C++ flags with sanitizers and PIC for shared library
+LDFLAGS_SHARED = -shared  # linking flags for shared library
+LDFLAGS_STATIC = # linking flags for static library
 RM = rm -f # rm command
 TARGET_LIB_SHARED = ./libmassobjects.so # target shared library (in parent directory)
 TARGET_LIB_STATIC = ./libmassobjects.a # target static library (in parent directory)
