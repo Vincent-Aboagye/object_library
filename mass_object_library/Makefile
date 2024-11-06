@@ -3,7 +3,7 @@
 # Created by Enrico VIGANO, enrico.vigano@uni.lu, SnT, 2023.
 # ********************************************************************
 #without coverage
-CC = g++ # C++ compiler
+CC = clang++ # C++ compiler
 CXXFLAGS = -Wall -Wextra -O2 -g -Iinclude -fPIC  # C++ flags with sanitizers and PIC for shared library
 LDFLAGS_SHARED = -shared  # linking flags for shared library
 LDFLAGS_STATIC = # linking flags for static library
